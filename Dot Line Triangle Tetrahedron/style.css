@@ -1,0 +1,101 @@
+:root {
+	--sz: 1;
+	--clr: cyan;
+	--spd: 7s;
+}
+
+* {
+	transform-style: preserve-3d;
+	box-sizing: border-box;
+}
+
+
+.content:hover,
+.content:hover *,
+.content:hover *:before,
+.content:hover *:after {
+	animation-play-state: paused !important;
+}
+		
+body {
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	perspective: 1000vmin;
+    background: radial-gradient(circle at 50% 100%, #333, #000);
+}
+
+.content {
+	width: calc( var(--sz) * 50vmin);
+	height: calc( var(--sz) * 50vmin);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: base-perspective var(--spd) ease 0s infinite alternate;
+}
+
+.triangle {
+    width: calc(calc(var(--sz) / 2) * 1vmin);
+    height: calc(calc(var(--sz) / 2) * 1vmin);
+    position: absolute;
+    animation: hide-dot var(--spd) ease 0s infinite alternate,dot var(--spd) ease 0s infinite alternate, base var(--spd) ease 0s infinite alternate;
+    margin-top: calc( var(--sz) * 15vmin);
+	background: var(--clr);
+	border-radius: calc( var(--sz) * 1vmin);
+	filter: blur(1px) drop-shadow(0px 0px 1px var(--clr));
+}
+
+.triangle:before, .triangle:after {
+	content: "";
+	position: absolute;
+    width: calc(calc(var(--sz) / 2) * 1vmin);
+    height: calc(calc(var(--sz) / 2) * 1vmin);
+	transform-origin: calc(100% - calc(calc(var(--sz) / 4) * 1vmin)) 50%;
+	background: var(--clr);
+	animation: base var(--spd) ease 0s infinite alternate, base-before var(--spd) ease 0s infinite alternate;
+	transition: all 1s ease 0s;
+	border-radius: calc( var(--sz) * 1vmin);
+}
+
+.triangle:after {
+	animation: base var(--spd) ease 0s infinite alternate, base-before var(--spd) ease 0s infinite alternate, base-after var(--spd) ease 0s infinite alternate;
+	
+	transform-origin: calc(calc(var(--sz) / 4) * 1vmin) 50%;
+}
+
+@keyframes dot {
+	 0%, 5% { margin-top: 0vmin; }
+	10%, 100% { margin-top: calc(var(--sz) * 15vmin); }
+}
+
+@keyframes base {
+	 0%, 10% { width: calc(calc(var(--sz) / 2) * 1vmin); }
+	20%, 100% { width: calc(var(--sz) * 30vmin); }
+}
+
+@keyframes base-before {
+	 0%, 20% { transform: rotate(0deg); }
+	30%, 100% { transform: rotate(60deg); }	
+}
+
+
+@keyframes base-after {
+	 0%, 30% { transform: rotate(0deg); }
+	40%, 100% { transform: rotate(-60deg); }	
+}
+
+@keyframes base-perspective {
+	 0%, 40% { transform: rotateX(0deg) rotateZ(0deg); }
+	50%, 75% { transform: rotateX(45deg) rotateZ(45deg); }	
+	95%, 100% { transform: rotateX(405deg) rotateZ(405deg); }	
+}
+
+@keyframes hide-dot {
+	 0%, 2.5% { opacity: 0; }
+	5%, 100% { opacity: 1; }	
+}
