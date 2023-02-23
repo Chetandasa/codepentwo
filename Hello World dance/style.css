@@ -1,0 +1,60 @@
+body{
+  overflow-x: hidden;
+  font-family: Helvetica;
+  color: #fff;
+  background: #000;
+  margin: 50px;
+}
+div{
+  width: 100%;
+  text-align: center;
+  animation: gradient 2.4s infinite ease-in-out;
+  letter-spacing: 10px;
+  white-space: nowrap;
+  font-size: 20px;
+}
+
+
+
+.a01{ 
+  animation-delay: 0.1s;
+}
+.a02{
+  animation-delay: 0.2s;  
+}
+
+.a03{
+  animation-delay: 0.3s;  
+}
+
+.a04{
+  animation-delay: 0.4s;  
+}
+
+.a05{
+  animation-delay: 0.5s;  
+}
+
+.a06{
+  animation-delay: 0.6s;  
+}
+
+  
+@keyframes gradient{
+  0%{
+    letter-spacing: 10px;
+  }
+  40%{
+    letter-spacing: 50px;
+  }
+
+  80%{
+    letter-spacing: 10px;
+  }
+  
+  
+  100%{
+    letter-spacing: 10px;
+  }
+  
+}
